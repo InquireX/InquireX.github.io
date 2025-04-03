@@ -31,6 +31,7 @@
         .onion-content ul { list-style-type: none; margin: 0; padding: 0; }
         .onion-content ul li { padding: 10px; background-color: #f2f2f2; margin: 5px 0; border-radius: 5px; }
         .onion-content ul li a { text-decoration: none; color: #333; }
+        /* Mobile adjustments */
         @media (max-width: 768px) {
             .google-style-input, .google-style-button { width: 80%; font-size: 14px; }
             .search-option { padding: 15px; margin: 5px; }
@@ -59,6 +60,12 @@
         </form>
     </div>
 
+    <!-- GitHub Bölümü -->
+    <div class="footer">
+        <p>Proje GitHub'da mevcut: <a href="https://github.com" target="_blank">GitHub</a></p>
+    </div>
+
+    <!-- Reklam Alanı -->
     <div class="ads">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8550505303704006" data-ad-slot="your-ad-slot-id" data-ad-format="auto"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -67,6 +74,7 @@
     <div class="google-index" onclick="showGoogleSites()">Google Index</div>
     <div class="onion-index" onclick="showOnionSites()">Onion Index</div>
 
+    <!-- Google Index Popup -->
     <div class="popup" id="google-popup">
         <button class="close-btn" onclick="closePopup('google')">X</button>
         <h3>Google Uygulamaları</h3>
@@ -81,6 +89,7 @@
         </div>
     </div>
 
+    <!-- Onion Index Popup -->
     <div class="popup" id="onion-popup">
         <button class="close-btn" onclick="closePopup('onion')">X</button>
         <h3>Onion Siteleri</h3>
@@ -89,6 +98,7 @@
             <div class="onion-category" onclick="showOnionContent('wallets')">Cüzdanlar</div>
             <div class="onion-category" onclick="showOnionContent('news')">Haber ve Gazeteler</div>
         </div>
+
         <div class="onion-content" id="search-engines">
             <ul><li><a href="http://torchuhw45ch5ktw.onion" target="_blank">Torch</a></li><li><a href="http://3g2upl4pq6kufc4m.onion" target="_blank">DuckDuckGo</a></li></ul>
         </div>
@@ -104,9 +114,21 @@
 <script>
     function changeSearchEngine(engine) {
         const form = document.getElementById('search-form');
-        if (engine === 'google') { form.action = "https://www.google.com/search"; }
-        else if (engine === 'duckduckgo') { form.action = "https://duckduckgo.com"; }
+        const googleBtn = document.getElementById('google-btn');
+        const duckduckgoBtn = document.getElementById('duckduckgo-btn');
+
+        googleBtn.classList.remove('selected');
+        duckduckgoBtn.classList.remove('selected');
+
+        if (engine === 'google') {
+            form.action = "https://www.google.com/search";
+            googleBtn.classList.add('selected');
+        } else if (engine === 'duckduckgo') {
+            form.action = "https://duckduckgo.com";
+            duckduckgoBtn.classList.add('selected');
+        }
     }
+
     function showGoogleSites() { document.getElementById('google-popup').style.display = 'block'; }
     function showOnionSites() { document.getElementById('onion-popup').style.display = 'block'; }
     function closePopup(type) { document.getElementById(type + '-popup').style.display = 'none'; }
@@ -118,4 +140,5 @@
 
 </body>
 </html>
+
 
