@@ -5,232 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InquireX</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .search-box {
-            margin-top: 50px;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .search-option {
-            display: inline-block;
-            padding: 20px;
-            margin: 10px;
-            background-color: #f2f2f2;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .search-option:hover {
-            background-color: #ddd;
-        }
-
-        .selected {
-            border: 3px solid #4CAF50;
-            background-color: #e7f7e1;
-        }
-
-        .search-buttons {
-            margin-top: 20px;
-        }
-
-        .google-style-input {
-            border: 1px solid #dfe1e5;
-            border-radius: 24px;
-            padding: 10px 16px;
-            font-size: 16px;
-            width: 300px;
-            background-color: #f2f2f2;
-        }
-
-        .google-style-button {
-            background-color: #f2f2f2;
-            border: 1px solid #dfe1e5;
-            border-radius: 24px;
-            padding: 10px 16px;
-            font-size: 16px;
-            line-height: 1.33;
-            color: #5f6368;
-        }
-
-        .ads {
-            margin-top: 50px;
-            background-color: #fff;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .footer {
-            margin-top: 50px;
-            padding: 10px;
-            background-color: #f2f2f2;
-            text-align: center;
-        }
-
-        .onion-index {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px;
-            background-color: #333;
-            color: #fff;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .google-index {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 10px;
-            background-color: #333;
-            color: #fff;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            z-index: 9999;
-        }
-
-        .popup ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .popup ul li {
-            padding: 10px;
-            background-color: #f2f2f2;
-            margin: 5px 0;
-            border-radius: 5px;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #ff0000;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* Google Application Box Style */
-        .google-apps {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-            gap: 10px;  /* Kutucuklar arasındaki boşluğu azaltarak sıklaştırdık */
-            margin-top: 20px;
-        }
-
-        .google-app {
-            width: 200px; /* Yatay dikdörtgen kutucuk genişliği */
-            height: 50px; /* Yükseklik ayarı */
-            background-color: #f2f2f2;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .google-app:hover {
-            background-color: #ddd;
-        }
-
-        .google-app a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        /* Onion Categories Layout */
-        .onion-categories {
-            display: flex;
-            justify-content: center; /* Center the categories */
-            margin-top: 20px;
-        }
-
-        .onion-category {
-            background-color: #f2f2f2;
-            padding: 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin: 0 10px; /* Add some spacing between the categories */
-            transition: 0.3s;
-            width: 120px; /* Width of each category box */
-            text-align: center;
-        }
-
-        .onion-category:hover {
-            background-color: #ddd;
-        }
-
-        /* Active Category Styles */
-        .onion-category.active {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        /* Content Container for the Selected Category */
-        .onion-content {
-            margin-top: 30px;
-            display: none;
-            text-align: center;
-        }
-
-        .onion-content.active {
-            display: block;
-        }
-
-        .onion-content ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .onion-content ul li {
-            padding: 10px;
-            background-color: #f2f2f2;
-            margin: 5px 0;
-            border-radius: 5px;
-        }
-
-        .onion-content ul li a {
-            text-decoration: none;
-            color: #333;
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; text-align: center; margin: 0; padding: 0; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .search-box { margin-top: 50px; padding: 20px; border-radius: 10px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .search-option, .google-style-input, .google-style-button { padding: 10px 16px; border-radius: 24px; font-size: 16px; transition: all 0.3s ease; }
+        .search-option { display: inline-block; margin: 10px; background-color: #f2f2f2; cursor: pointer; }
+        .search-option:hover { background-color: #ddd; }
+        .selected { border: 3px solid #4CAF50; background-color: #e7f7e1; }
+        .google-style-input { border: 1px solid #dfe1e5; width: 300px; background-color: #f2f2f2; }
+        .google-style-button { background-color: #f2f2f2; border: 1px solid #dfe1e5; color: #5f6368; }
+        .footer, .ads { margin-top: 50px; background-color: #f2f2f2; padding: 10px; text-align: center; }
+        .onion-index, .google-index { position: fixed; top: 20px; padding: 10px; background-color: #333; color: #fff; border-radius: 5px; cursor: pointer; }
+        .onion-index { right: 20px; }
+        .google-index { left: 20px; }
+        .popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 400px; z-index: 9999; }
+        .popup ul { list-style-type: none; margin: 0; padding: 0; }
+        .popup ul li { padding: 10px; background-color: #f2f2f2; margin: 5px 0; border-radius: 5px; }
+        .close-btn { position: absolute; top: 10px; right: 10px; background-color: #ff0000; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+        .google-apps, .onion-categories { display: flex; justify-content: space-evenly; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+        .google-app, .onion-category { width: 200px; height: 50px; background-color: #f2f2f2; border-radius: 8px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center; font-size: 14px; }
+        .onion-category:hover, .google-app:hover { background-color: #ddd; }
+        .onion-category.active { background-color: #4CAF50; color: white; }
+        .onion-content { margin-top: 30px; display: none; text-align: center; }
+        .onion-content.active { display: block; }
+        .onion-content ul { list-style-type: none; margin: 0; padding: 0; }
+        .onion-content ul li { padding: 10px; background-color: #f2f2f2; margin: 5px 0; border-radius: 5px; }
+        .onion-content ul li a { text-decoration: none; color: #333; }
+        @media (max-width: 768px) {
+            .google-style-input, .google-style-button { width: 80%; font-size: 14px; }
+            .search-option { padding: 15px; margin: 5px; }
+            .google-app { width: 100px; height: 40px; font-size: 12px; }
+            .onion-category { width: 100px; padding: 12px; }
+            .popup { width: 90%; padding: 15px; }
+            .onion-categories { flex-direction: column; }
+            .onion-category { margin: 5px 0; }
+            .onion-content ul li { font-size: 14px; }
         }
     </style>
 </head>
@@ -240,16 +49,10 @@
     <div class="search-box">
         <h1>InquireX</h1>
         <p>Arama yapmak için bir motor seçin:</p>
-
         <div class="search-buttons">
-            <div class="search-option" id="google-btn" onclick="changeSearchEngine('google')">
-                Google
-            </div>
-            <div class="search-option" id="duckduckgo-btn" onclick="changeSearchEngine('duckduckgo')">
-                DuckDuckGo
-            </div>
+            <div class="search-option" id="google-btn" onclick="changeSearchEngine('google')">Google</div>
+            <div class="search-option" id="duckduckgo-btn" onclick="changeSearchEngine('duckduckgo')">DuckDuckGo</div>
         </div>
-
         <form id="search-form" method="get" target="_blank">
             <input class="google-style-input" type="text" name="q" placeholder="Aramak için yazın..." required>
             <input class="google-style-button" type="submit" value="Ara">
@@ -257,20 +60,13 @@
     </div>
 
     <div class="ads">
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-8550505303704006"
-            data-ad-slot="your-ad-slot-id"
-            data-ad-format="auto"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8550505303704006" data-ad-slot="your-ad-slot-id" data-ad-format="auto"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <div class="google-index" onclick="showGoogleSites()">Google Index</div>
     <div class="onion-index" onclick="showOnionSites()">Onion Index</div>
 
-    <!-- Google Index Popup -->
     <div class="popup" id="google-popup">
         <button class="close-btn" onclick="closePopup('google')">X</button>
         <h3>Google Uygulamaları</h3>
@@ -285,101 +81,41 @@
         </div>
     </div>
 
-    <!-- Onion Index Popup -->
     <div class="popup" id="onion-popup">
         <button class="close-btn" onclick="closePopup('onion')">X</button>
         <h3>Onion Siteleri</h3>
         <div class="onion-categories">
-            <div class="onion-category" onclick="showOnionContent('search-engines')">
-                Arama Motorları
-            </div>
-            <div class="onion-category" onclick="showOnionContent('wallets')">
-                Cüzdanlar
-            </div>
-            <div class="onion-category" onclick="showOnionContent('news')">
-                Haber ve Gazeteler
-            </div>
+            <div class="onion-category" onclick="showOnionContent('search-engines')">Arama Motorları</div>
+            <div class="onion-category" onclick="showOnionContent('wallets')">Cüzdanlar</div>
+            <div class="onion-category" onclick="showOnionContent('news')">Haber ve Gazeteler</div>
         </div>
-
         <div class="onion-content" id="search-engines">
-            <ul>
-                <li><a href="http://torchuhw45ch5ktw.onion" target="_blank">Torch</a></li>
-                <li><a href="http://3g2upl4pq6kufc4m.onion" target="_blank">DuckDuckGo</a></li>
-            </ul>
+            <ul><li><a href="http://torchuhw45ch5ktw.onion" target="_blank">Torch</a></li><li><a href="http://3g2upl4pq6kufc4m.onion" target="_blank">DuckDuckGo</a></li></ul>
         </div>
         <div class="onion-content" id="wallets">
-            <ul>
-                <li><a href="http://blockchainbdgpzk.onion" target="_blank">Blockchain Wallet</a></li>
-                <li><a href="http://coinomi.io.onion" target="_blank">Coinomi</a></li>
-                <li><a href="http://protonmail4dkkzpgz.onion" target="_blank">ProtonMail (Onion)</a></li>
-            </ul>
+            <ul><li><a href="http://blockchainbdgpzk.onion" target="_blank">Blockchain Wallet</a></li><li><a href="http://coinomi.io.onion" target="_blank">Coinomi</a></li><li><a href="http://protonmail4dkkzpgz.onion" target="_blank">ProtonMail (Onion)</a></li></ul>
         </div>
         <div class="onion-content" id="news">
-            <ul>
-                <li><a href="http://www.propub3r6espa33w.onion" target="_blank">ProPublica</a></li>
-                <li><a href="http://theguardian4uor6nl.onion" target="_blank">The Guardian</a></li>
-            </ul>
+            <ul><li><a href="http://www.siliconvalley2473.onion" target="_blank">Silicon Valley</a></li><li><a href="http://www.bbc2d3f7o9eh9jtb.onion" target="_blank">BBC News</a></li></ul>
         </div>
     </div>
 </div>
 
-<div class="footer">
-    <p>Powered by GitHub Pages | <a href="https://github.com" target="_blank">GitHub</a></p>
-</div>
-
 <script>
     function changeSearchEngine(engine) {
-        var form = document.getElementById("search-form");
-
-        document.querySelectorAll('.search-option').forEach(function(element) {
-            element.classList.remove('selected');
-        });
-
-        if (engine === "google") {
-            form.action = "https://www.google.com/search";
-            document.getElementById('google-btn').classList.add('selected');
-        } else if (engine === "duckduckgo") {
-            form.action = "https://duckduckgo.com/";
-            document.getElementById('duckduckgo-btn').classList.add('selected');
-        }
+        const form = document.getElementById('search-form');
+        if (engine === 'google') { form.action = "https://www.google.com/search"; }
+        else if (engine === 'duckduckgo') { form.action = "https://duckduckgo.com"; }
     }
-
-    function showGoogleSites() {
-        document.getElementById('google-popup').style.display = 'block';
-    }
-
-    function showOnionSites() {
-        document.getElementById('onion-popup').style.display = 'block';
-    }
-
-    function closePopup(type) {
-        if (type === 'google') {
-            document.getElementById('google-popup').style.display = 'none';
-        } else {
-            document.getElementById('onion-popup').style.display = 'none';
-        }
-    }
-
+    function showGoogleSites() { document.getElementById('google-popup').style.display = 'block'; }
+    function showOnionSites() { document.getElementById('onion-popup').style.display = 'block'; }
+    function closePopup(type) { document.getElementById(type + '-popup').style.display = 'none'; }
     function showOnionContent(category) {
-        var contents = document.querySelectorAll('.onion-content');
-        var categories = document.querySelectorAll('.onion-category');
-        
-        // Hide all contents
-        contents.forEach(function(content) {
-            content.classList.remove('active');
-        });
-
-        // Remove active class from all categories
-        categories.forEach(function(category) {
-            category.classList.remove('active');
-        });
-
-        // Show clicked content and add active class
+        document.querySelectorAll('.onion-content').forEach(element => element.classList.remove('active'));
         document.getElementById(category).classList.add('active');
-        var clickedCategory = Array.from(categories).find(cat => cat.textContent.trim() === category);
-        clickedCategory.classList.add('active');
     }
 </script>
 
 </body>
 </html>
+
