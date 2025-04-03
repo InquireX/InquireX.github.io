@@ -27,6 +27,29 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
+        .search-option {
+            display: inline-block;
+            padding: 20px;
+            margin: 10px;
+            background-color: #f2f2f2;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-option:hover {
+            background-color: #ddd;
+        }
+
+        .selected {
+            border: 3px solid #4CAF50; /* Seçilen motoru yeşil renkte göstermek */
+            background-color: #e7f7e1; /* Seçilen motoru daha belirgin kılmak */
+        }
+
+        .search-buttons {
+            margin-top: 20px;
+        }
+
         .google-style-input {
             border: 1px solid #dfe1e5;
             border-radius: 24px;
@@ -36,14 +59,14 @@
             background-color: #f2f2f2;
         }
 
-        .search-buttons {
-            margin-top: 20px;
-        }
-
-        .search-buttons img {
-            width: 100px;
-            margin: 10px;
-            cursor: pointer;
+        .google-style-button {
+            background-color: #f2f2f2;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            padding: 10px 16px;
+            font-size: 16px;
+            line-height: 1.33;
+            color: #5f6368;
         }
 
         .ads {
@@ -59,10 +82,7 @@
             background-color: #f2f2f2;
             text-align: center;
         }
-
     </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8550505303704006"
-        crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -73,10 +93,14 @@
 
         <!-- Arama Motoru Seçim Butonları -->
         <div class="search-buttons">
-            <!-- Google Logosu -->
-            <img src="https://InquireX.github.io/InquireX.github.io/google.png" alt="Google" id="google-btn" onclick="changeSearchEngine('google')">
-            <!-- DuckDuckGo Logosu -->
-            <img src="https://github.com/InquireX/InquireX.github.io/blob/main/duckduckgo.png" alt="DuckDuckGo" id="duckduckgo-btn" onclick="changeSearchEngine('duckduckgo')">
+            <!-- Google Butonu -->
+            <div class="search-option" id="google-btn" onclick="changeSearchEngine('google')">
+                Google
+            </div>
+            <!-- DuckDuckGo Butonu -->
+            <div class="search-option" id="duckduckgo-btn" onclick="changeSearchEngine('duckduckgo')">
+                DuckDuckGo
+            </div>
         </div>
 
         <!-- Arama Formu -->
@@ -107,10 +131,18 @@
 <script>
     function changeSearchEngine(engine) {
         var form = document.getElementById("search-form");
+
+        // Seçilen motoru etrafında bir kutu/oval görünmesini sağla
+        document.querySelectorAll('.search-option').forEach(function(element) {
+            element.classList.remove('selected');
+        });
+
         if (engine === "google") {
             form.action = "https://www.google.com/search";
+            document.getElementById('google-btn').classList.add('selected');
         } else if (engine === "duckduckgo") {
             form.action = "https://duckduckgo.com/";
+            document.getElementById('duckduckgo-btn').classList.add('selected');
         }
     }
 </script>
