@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InquireX</title>
-
-    <!-- Favicon Eklemek -->
-    <link rel="icon" href="https://previews.123rf.com/images/delwarbd/delwarbd2107/delwarbd210702032/172168930-icono-de-criptograf%C3%ADa.jpg" type="image/x-icon">
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -98,6 +94,17 @@
             cursor: pointer;
         }
 
+        .google-index {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
         .popup {
             display: none;
             position: fixed;
@@ -108,13 +115,14 @@
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 400px;
             z-index: 9999;
         }
 
         .popup ul {
             list-style-type: none;
             padding: 0;
+            margin: 0;
         }
 
         .popup ul li {
@@ -136,9 +144,43 @@
             cursor: pointer;
         }
 
+        /* Google Application Box Style */
+        .google-apps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 10px;  /* Kutucuklar arasındaki boşluğu azaltarak sıklaştırdık */
+            margin-top: 20px;
+        }
+
+        .google-app {
+            width: 200px; /* Yatay dikdörtgen kutucuk genişliği */
+            height: 50px; /* Yükseklik ayarı */
+            background-color: #f2f2f2;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .google-app:hover {
+            background-color: #ddd;
+        }
+
+        .google-app a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        /* Onion Categories Layout */
         .onion-categories {
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Center the categories */
             margin-top: 20px;
         }
 
@@ -147,11 +189,48 @@
             padding: 15px;
             border-radius: 8px;
             cursor: pointer;
+            margin: 0 10px; /* Add some spacing between the categories */
             transition: 0.3s;
+            width: 120px; /* Width of each category box */
+            text-align: center;
         }
 
         .onion-category:hover {
             background-color: #ddd;
+        }
+
+        /* Active Category Styles */
+        .onion-category.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Content Container for the Selected Category */
+        .onion-content {
+            margin-top: 30px;
+            display: none;
+            text-align: center;
+        }
+
+        .onion-content.active {
+            display: block;
+        }
+
+        .onion-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .onion-content ul li {
+            padding: 10px;
+            background-color: #f2f2f2;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .onion-content ul li a {
+            text-decoration: none;
+            color: #333;
         }
     </style>
 </head>
@@ -188,23 +267,59 @@
         </script>
     </div>
 
+    <div class="google-index" onclick="showGoogleSites()">Google Index</div>
     <div class="onion-index" onclick="showOnionSites()">Onion Index</div>
 
+    <!-- Google Index Popup -->
+    <div class="popup" id="google-popup">
+        <button class="close-btn" onclick="closePopup('google')">X</button>
+        <h3>Google Uygulamaları</h3>
+        <div class="google-apps">
+            <div class="google-app"><a href="https://www.google.com" target="_blank">Google Search</a></div>
+            <div class="google-app"><a href="https://maps.google.com" target="_blank">Google Maps</a></div>
+            <div class="google-app"><a href="https://news.google.com" target="_blank">Google News</a></div>
+            <div class="google-app"><a href="https://translate.google.com" target="_blank">Google Translate</a></div>
+            <div class="google-app"><a href="https://drive.google.com" target="_blank">Google Drive</a></div>
+            <div class="google-app"><a href="https://www.youtube.com" target="_blank">YouTube</a></div>
+            <div class="google-app"><a href="https://www.spotify.com" target="_blank">Spotify</a></div>
+        </div>
+    </div>
+
+    <!-- Onion Index Popup -->
     <div class="popup" id="onion-popup">
-        <button class="close-btn" onclick="closePopup()">X</button>
+        <button class="close-btn" onclick="closePopup('onion')">X</button>
         <h3>Onion Siteleri</h3>
         <div class="onion-categories">
-            <div class="onion-category" onclick="showOnionSitesList('search-engines')">
+            <div class="onion-category" onclick="showOnionContent('search-engines')">
                 Arama Motorları
             </div>
-            <div class="onion-category" onclick="showOnionSitesList('wallets')">
+            <div class="onion-category" onclick="showOnionContent('wallets')">
                 Cüzdanlar
             </div>
-            <div class="onion-category" onclick="showOnionSitesList('news')">
+            <div class="onion-category" onclick="showOnionContent('news')">
                 Haber ve Gazeteler
             </div>
         </div>
-        <ul id="onion-sites-list"></ul>
+
+        <div class="onion-content" id="search-engines">
+            <ul>
+                <li><a href="http://torchuhw45ch5ktw.onion" target="_blank">Torch</a></li>
+                <li><a href="http://3g2upl4pq6kufc4m.onion" target="_blank">DuckDuckGo</a></li>
+            </ul>
+        </div>
+        <div class="onion-content" id="wallets">
+            <ul>
+                <li><a href="http://blockchainbdgpzk.onion" target="_blank">Blockchain Wallet</a></li>
+                <li><a href="http://coinomi.io.onion" target="_blank">Coinomi</a></li>
+                <li><a href="http://protonmail4dkkzpgz.onion" target="_blank">ProtonMail (Onion)</a></li>
+            </ul>
+        </div>
+        <div class="onion-content" id="news">
+            <ul>
+                <li><a href="http://www.propub3r6espa33w.onion" target="_blank">ProPublica</a></li>
+                <li><a href="http://theguardian4uor6nl.onion" target="_blank">The Guardian</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 
@@ -229,39 +344,40 @@
         }
     }
 
+    function showGoogleSites() {
+        document.getElementById('google-popup').style.display = 'block';
+    }
+
     function showOnionSites() {
         document.getElementById('onion-popup').style.display = 'block';
     }
 
-    function closePopup() {
-        document.getElementById('onion-popup').style.display = 'none';
+    function closePopup(type) {
+        if (type === 'google') {
+            document.getElementById('google-popup').style.display = 'none';
+        } else {
+            document.getElementById('onion-popup').style.display = 'none';
+        }
     }
 
-    function showOnionSitesList(category) {
-        var list = document.getElementById('onion-sites-list');
-        list.innerHTML = ''; // Clear previous list
-
-        var sites = {
-            'search-engines': [
-                { name: 'Torch', url: 'http://torchuhw45ch5ktw.onion' },
-                { name: 'DuckDuckGo', url: 'http://3g2upl4pq6kufc4m.onion' },
-            ],
-            'wallets': [
-                { name: 'Blockchain Wallet', url: 'http://blockchainbdgpzk.onion' },
-                { name: 'Coinomi', url: 'http://coinomi.io.onion' },
-                { name: 'ProtonMail (Onion)', url: 'http://protonmail4dkkzpgz.onion' }
-            ],
-            'news': [
-                { name: 'ProPublica', url: 'http://www.propub3r6espa33w.onion' },
-                { name: 'The Guardian', url: 'http://theguardian4uor6nl.onion' },
-            ]
-        };
-
-        sites[category].forEach(function(site) {
-            var listItem = document.createElement('li');
-            listItem.innerHTML = '<a href="' + site.url + '" target="_blank">' + site.name + '</a>';
-            list.appendChild(listItem);
+    function showOnionContent(category) {
+        var contents = document.querySelectorAll('.onion-content');
+        var categories = document.querySelectorAll('.onion-category');
+        
+        // Hide all contents
+        contents.forEach(function(content) {
+            content.classList.remove('active');
         });
+
+        // Remove active class from all categories
+        categories.forEach(function(category) {
+            category.classList.remove('active');
+        });
+
+        // Show clicked content and add active class
+        document.getElementById(category).classList.add('active');
+        var clickedCategory = Array.from(categories).find(cat => cat.textContent.trim() === category);
+        clickedCategory.classList.add('active');
     }
 </script>
 
